@@ -1,0 +1,9 @@
+#barcodesinput,
+#barcodes {
+    display: none;
+    /* visibility: hidden; */
+}
+
+.borderParentOfCanvas {
+    border: 1px solid rgb(20, 233, 27) !important;
+}
