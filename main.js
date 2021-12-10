@@ -1,7 +1,6 @@
 
 const barcodesinput =document.querySelector('#barcodesinput')
 const barcodesinputWithContent =document.querySelector('#barcodesinputWithContent')
-const btn=document.querySelector('#addContent')
 
 
 navigator.mediaDevices.enumerateDevices().then((devices) => {
@@ -35,15 +34,16 @@ function step(capturer) {
         });
     });
 }
-
+//reader scan code and add to input
 function addValueToInput(){
-// btn.addEventListener('click',()=>{
   if(barcodesinput.value>""){
     document.querySelector('.parentOfCanvas').classList.add('borderParentOfCanvas');
-  barcodesinputWithContent.value=barcodesinput.value;}
-
-
-
+    barcodesinputWithContent.value=barcodesinput.value;}
 }
-// btn.addEventListener('click',addValueToInput)
-// addValueToInput()
+
+
+document.querySelector('#startScan').addEventListener('click',()=>{
+  document.querySelector('.qrReaderSection').style.display="block";
+  document.querySelector('#startScan').style.display="none"
+})
+

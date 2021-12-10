@@ -1,9 +1,52 @@
+body {
+    width: 100%;
+    height: 100vh;
+}
+
+.navbar-icon {
+    font-size: 4rem;
+    color: white;
+
+}
+
+
 #barcodesinput,
 #barcodes {
     display: none;
     /* visibility: hidden; */
 }
 
-.borderParentOfCanvas {
+.qrReaderSection {
+    display: none;
+}
+
+.parentOfCanvas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .borderParentOfCanvas {
     border: 1px solid rgb(20, 233, 27) !important;
+} */
+
+#canvas {
+    width: 100%;
+    height: 300px;
+}
+
+.row {
+    --bs-gutter-x: 0rem;
+}
+
+.buttonStartScanParent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* vertical-align: middle; */
+}
+
+#startScan {
+    height: 15vh;
+    font-size: 1.5rem;
 }
