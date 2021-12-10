@@ -80,3 +80,16 @@ body {
     height: 15vh;
     font-size: 1.5rem;
 }
+
+
+
+.listDetectedCameraParent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#listDetectedCamera {
+    width: 40%;
+    ;
+}

@@ -4,8 +4,35 @@ const barcodesinputWithContent =document.querySelector('#barcodesinputWithConten
 
 
 navigator.mediaDevices.enumerateDevices().then((devices) => {
+  devices.forEach(element => {
+    if(element['kind']==="videoinput"){
+    const option = document.createElement("option");
+    document.querySelector('#listDetectedCamera').appendChild(option).innerHTML=element['label']
+  }
+
+if(document.querySelector('#listDetectedCamera').value===element['label']){
+ let id = element['deviceId']
+ console.log(id);
+}
+  });
+
+// po zmianie camery ma zwracac id elementu trzeba poprac devices i 
+  document.querySelector('#listDetectedCamera').addEventListener('change',()=>{
+    console.log('sdfsdfsd');
+  array.forEach(element => {
+    
+  });
+    if(document.querySelector('#listDetectedCamera').value===element['label']){
+      let id = element['deviceId']
+      console.log(id);
+     }
+  })
+
+
+
 	console.log(JSON.stringify(devices));
 	let id = devices.filter((device) => device.kind === "videoinput").slice(-1).pop().deviceId;
+console.log(id);
   let constrains = {video: {optional: [{sourceId: id }]}};
 
   navigator.mediaDevices.getUserMedia(constrains).then((stream) => {
