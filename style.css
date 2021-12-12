@@ -18,6 +18,8 @@ body {
 
 .qrReaderSection {
     display: block;
+    /* height: 60vh; */
+    overflow: hidden;
 
 }
 
@@ -44,25 +46,33 @@ body {
 
 }
 
-.parentOfCanvas {
+#barcodesinputWithContent {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 80%;
 }
 
 
-.parentOfCanvasTrue {
+.parentOfCanvasRow {
     overflow: hidden;
-    /* width: 100%; */
+    width: 100vw;
+
 }
 
 /* .borderParentOfCanvas {
     border: 1px solid rgb(20, 233, 27) !important;
 } */
+.wrapCanvas {
+    display: flex;
+    justify-content: center;
+}
 
 #canvas {
-    width: 300px;
-    height: 300px;
+    height: 640px/2;
+    width: 480px/2;
+    /* width: 60vw;
+    height: 40vh; */
 }
 
 .row {
@@ -93,4 +103,8 @@ body {
 #listDetectedCamera {
     width: 40%;
     ;
+}
+
+body {
+    /* background: rgb(59, 200, 59); */
 }
