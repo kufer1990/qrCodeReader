@@ -10,7 +10,7 @@ include 'php/navbar.php';
 
   <div class="row h-100">
     <div class="col-12 text-center buttonStartScanParent">    
-         <a href="scaner.php"> <button type="button" id="startScan" class="btn btn-primary">Rozpocznij skanowanie</button></a>
+         <a href="scanner.php"> <button type="button" id="startScan" class="btn btn-primary">Rozpocznij skanowanie</button></a>
   
     </div>
 

@@ -36,4 +36,7 @@ include 'php/navbar.php';
 
 
 <!-- </div> -->
-<?php include 'php/footer.php';?>
+</body>
+<script src="scanner.js"></script>
+
+</html>

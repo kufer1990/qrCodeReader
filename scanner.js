@@ -44,6 +44,7 @@ function confirmScan() {
 
           step(capturer);
           addValueToInput(barcodesinput.value)
+        
         })
         .catch((e) => {
           console.error(e);
@@ -54,9 +55,11 @@ function confirmScan() {
 
   function addValueToInput() {
     // btn.addEventListener('click',()=>{
-    if (barcodesinput.value > "") {
+    if (barcodesinput.value >"") {
       // document.querySelector('.parentOfCanvas').classList.add('borderParentOfCanvas');
       barcodesinputWithContent.value = barcodesinput.value;
+
       confirmScan();
+    location.href ="index.php"
     }
   }
