@@ -60,6 +60,8 @@ function confirmScan() {
       barcodesinputWithContent.value = barcodesinput.value;
 
       confirmScan();
-    location.href ="index.php"
+      document.querySelector('.sendForm').click();
+      
+    // location.href ="index.php"
     }
   }

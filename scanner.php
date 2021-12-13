@@ -11,31 +11,22 @@ include 'php/navbar.php';
       <div class="row parentOfCanvasRow">
         <div class="col-12 wrapCanvas"> <canvas id="canvas" class=""></canvas></div>
       </div>
+      <form action="answear.php" method="POST">
       <div class="row">
         <div class="col-12 inputPluParent">
           <div id="barcodes" class="border"></div>
           <input type="text" id="barcodesinput" class="border border-dark">
-          <input type="text" id="barcodesinputWithContent" class="border border-primary">
+     
+          <input type="text" id="barcodesinputWithContent" name='bardcodeInputContent' class="border border-primary">
+         <button type="send" class="sendForm d-none">wyslij</button>
         </div>
       </div>
+      </form>
     </div>
-<!-- section choice camera -->
-    <!-- <div class="row  mt-5">
-      <div class="col-12 mb-2">Wybierz Kamerę, z której chcesz korzystać</div>
-      <div class="col-12 listDetectedCameraParent">
-        <select name="" id="listDetectedCamera" class="border border-primary w-100">
-
-        </select>
-      </div>
-    </div> -->
-
   </div>
   </div>
 </section>
-<!-- choice camera -->
 
-
-<!-- </div> -->
 </body>
 <script src="scanner.js"></script>
 
