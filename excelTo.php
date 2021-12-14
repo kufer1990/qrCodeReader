@@ -1,72 +1,14 @@
 <?php
-
+$nameFileExcel = $_POST['excelFileToConvert'];
 // header('refresh: .5;');
-// // ini_set('error_reporting', E_ALL);
-// // ini_set('display_errors', true);
-
-// require_once __DIR__.'/api/simplexlsx/src/SimpleXLSX.php';
-
-// // echo '<h1>rows() and rowsEx()</h1>';
-// if ( $xlsx = SimpleXLSX::parse('excel/STANY.xlsx')) {
-// // 	// ->rows()
-// // 	// echo '<h2>$xlsx->rows()</h2>';
-// 	// echo '<pre>';
-// 	// print_r( $xlsx->rows() );
-// 	// echo '</pre>';
-// // echo count($xlsx->rows());
-// // 	// ->rowsEx();
-// // 	// echo '<h2>$xlsx->rowsEx()</h2>';
-// // 	// echo '<pre>';
-// // 	// print_r( $xlsx->rowsEx() );
-// // 	// echo '</pre>';
-// $array = print_r($xslx->rows());
-// echo $array;
-// // echo '<pre>';
-// for ($i=0; $i < count($xlsx->rows()) ; $i++) { 
-
-//     // print_r($array);
-
-//     # code...
-// }
-// echo '</pre>';
-// // } else {
-// // 	echo SimpleXLSX::parseError();
-//  }
-
-
-
-// include "php/connect.php";
-
-// $sql= "CREATE TABLE IF NOT EXISTS STANY (
-//     `EAN` BIGINT,
-//     `NAZWA` VARCHAR(30) CHARACTER SET utf8,
-//     `STAN` INT,
-//     `CENA_ZAKUPU` NUMERIC(5, 2),
-//     `CENA_SPRZEDAZY` NUMERIC(5, 2),
-//     `MARKA` VARCHAR(10) CHARACTER SET utf8,
-//     `DOST` VARCHAR(29) CHARACTER SET utf8
-// );";
-
-// $result = mysqli_query($conn, $sql );
-
-?>
-
-
-
-
-
-
-
-
-<?php
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', true);
 
 require_once __DIR__.'/api/simplexlsx/src/SimpleXLSX.php';
 // header('refresh: .5;');
-echo '<h1>Rows with header values as keys</h1>';
+
 $dateToTable="";
-if ( $xlsx = SimpleXLSX::parse('excel/STANY.xlsx')) {
+if ( $xlsx = SimpleXLSX::parse('excel/'.$nameFileExcel)) {
 
 	// Produce array keys from the array values of 1st array element
 	$header_values = $rows = [];
@@ -78,18 +20,38 @@ if ( $xlsx = SimpleXLSX::parse('excel/STANY.xlsx')) {
 		}
 		$rows[] = array_combine( $header_values, $r );
 	}
-	// print_r( $rows );
-    // $result2 = mysqli_query($conn, $sql );
- 
     
+    //create question to sql
     for ($i=0; $i <count($xlsx->rows())-1 ; $i++) {
      if ($i<count($xlsx->rows())-2){
-  $dateToTable= $dateToTable."(".$rows[$i]['EAN'].",'".$rows[$i]['NAZWA']."'".$rows[$i]['STAN']."'".$rows[$i]['CENA_ZAKUPU']."'".$rows[$i]['CENA_SPRZEDAZY']."'".$rows[$i]['MARKA']."'".$rows[$i]['DOST']."'),";
+  $dateToTable= $dateToTable."(".$rows[$i]['EAN'].",'".$rows[$i]['NAZWA']."',".$rows[$i]['STAN'].",".$rows[$i]['CENA_ZAKUPU'].",".$rows[$i]['CENA_SPRZEDAZY'].",'".$rows[$i]['MARKA']."','".$rows[$i]['DOST']."'),";
         }
-     else{$dateToTable = $dateToTable."(".$rows[$i]['EAN'].",'".$rows[$i]['NAZWA']."'".$rows[$i]['STAN']."'".$rows[$i]['CENA_ZAKUPU']."'".$rows[$i]['CENA_SPRZEDAZY']."'".$rows[$i]['MARKA']."'".$rows[$i]['DOST']."');";}
+     else{$dateToTable= $dateToTable."(".$rows[$i]['EAN'].",'".$rows[$i]['NAZWA']."',".$rows[$i]['STAN'].",".$rows[$i]['CENA_ZAKUPU'].",".$rows[$i]['CENA_SPRZEDAZY'].",'".$rows[$i]['MARKA']."','".$rows[$i]['DOST']."')";}
     }
-    echo $dateToTable;
-    
+
+
+    include "php/connect.php";
+//create table
+$sql= "CREATE TABLE IF NOT EXISTS STANY (
+    `EAN` BIGINT,
+    `NAZWA` VARCHAR(30) CHARACTER SET utf8,
+    `STAN` INT,
+    `CENA_ZAKUPU` NUMERIC(5, 2),
+    `CENA_SPRZEDAZY` NUMERIC(5, 2),
+    `MARKA` VARCHAR(10) CHARACTER SET utf8,
+    `DOST` VARCHAR(29) CHARACTER SET utf8
+);";
+$result = mysqli_query($conn, $sql );
+
+//clear table
+$sql2="DELETE FROM `STANY`";
+$result2=mysqli_query($conn, $sql2);
+
+//add table to db
+
+$sql3="INSERT INTO STANY VALUES $dateToTable";
+$result3 = mysqli_query($conn, $sql3);
+
     // EAN
     // NAZWA
     // STAN
@@ -99,3 +61,29 @@ if ( $xlsx = SimpleXLSX::parse('excel/STANY.xlsx')) {
     // DOST
 
 }
+include 'php/header.php';
+include 'php/navbar.php';
+
+?>
+<style>
+.navbar{
+background-color: #198754!important;
+}
+
+
+</style>
+
+
+<div class="container h-100 border border-dark">
+    <div class="row h-100 d-flex align-items-center">
+        <div class="col-12  d-flex align-items-center justify-content-center">
+            <div class="text justify-content-center text-white bg-success p-4">Gratulacje! Baza została zaktualizowana!</div>
+        </div>
+        <div class="col-12  d-flex align-items-center justify-content-center">
+            <button class="btn btn-outline-success"><a href="index.php" class="text-success text-decoration-none">Powróć do menu głównego</a></button>
+        </div>
+    </div>
+</div>
+<?php 
+include 'php/footer.php';
+?>
