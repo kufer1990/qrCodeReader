@@ -18,7 +18,7 @@ include 'php/header.php';
 <script src="answear.js"></script>
 </html>
 <?php 
-
+//  
 
 // include 'php/footer.php';
 ?>

@@ -16,7 +16,7 @@ include 'php/navbar.php';
     </div>
   </div> -->
 
-
+<!--   -->
   <!-- <button id="btn btn-primary addContent">Skanuj</button> -->
   </body>
 

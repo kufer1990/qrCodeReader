@@ -29,5 +29,5 @@ $bardcodeElement=$_POST['bardcodeInputContent'];
          <a href="scanner.php"> <button type="button" id="startScan" class="btn btn-primary">Rozpocznij skanowanie</button></a>
     </div>
   </div> -->
-
+// 
   </div>
