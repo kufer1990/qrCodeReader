@@ -39,14 +39,7 @@ if ($xlsx = SimpleXLSX::parse("excel/" . $nameFileExcel)) {
         $rows[] = array_combine($header_values, $r);
     }
 
-    //create question to sql
-    for ($i = 0; $i < count($xlsx->rows()) - 1; $i++) {
-        if ($i < count($xlsx->rows()) - 2) {
-            $dateToTable = $dateToTable . "(" . $rows[$i]['EAN'] . ",'" . $rows[$i]['NAZWA'] . "'," . $rows[$i]['STAN'] . "," . $rows[$i]['CENA_ZAKUPU'] . "," . $rows[$i]['CENA_SPRZEDAZY'] . ",'" . $rows[$i]['MARKA'] . "','" . $rows[$i]['DOST'] . "'),";
-        } else {
-            $dateToTable = $dateToTable . "(" . $rows[$i]['EAN'] . ",'" . $rows[$i]['NAZWA'] . "'," . $rows[$i]['STAN'] . "," . $rows[$i]['CENA_ZAKUPU'] . "," . $rows[$i]['CENA_SPRZEDAZY'] . ",'" . $rows[$i]['MARKA'] . "','" . $rows[$i]['DOST'] . "')";
-        }
-    }
+
 
 
     include "php/connect.php";
@@ -66,10 +59,54 @@ if ($xlsx = SimpleXLSX::parse("excel/" . $nameFileExcel)) {
     $sql2 = "DELETE FROM `STANY`";
     $result2 = mysqli_query($conn, $sql2);
 
+
+
+
+if (count($xlsx->rows())>1000){
+    $numberOfLines = 10000;// quantity lines to import in one inquiry // ilosc linii importowanych w jednym zapytaniu
+    $overallIteration= floor(count($xlsx->rows())/$numberOfLines);
+}
+else{
+    $numberOfLines = count($xlsx->rows())-1;
+    $overallIteration= floor(count($xlsx->rows())/$numberOfLines);
+}
+
+    $numberOfIterarion =0; // the number of iteration that is being performed// numer iterazji, która się wykonuje
+ 
+  
+ 
+    $moduloNumberOfLine = count($xlsx->rows())%$numberOfLines;
+
+    // if($overallIteration = floor(count($xlsx->rows())/$numberOfLines){}
+
+    for ($j =0;$j<=$overallIteration;$j++){
+
+       
+
+    if($j>0){
+    $numberOfIterarion = $j*$numberOfLines;// if the iteration is greater than 0 multiples the line number
+    }
+
+    if($j==$overallIteration){
+        $numberOfLines = $moduloNumberOfLine;
+    }
+
+
+
+    for ($i=$numberOfIterarion; $i< $numberOfLines; $i++) {
+        // echo $i."</br>";
+        if ($i < $numberOfLines-1) {
+            $dateToTable = $dateToTable . "(" . $rows[$i]['EAN'] . ",'" . $rows[$i]['NAZWA'] . "'," . $rows[$i]['STAN'] . "," . $rows[$i]['CENA_ZAKUPU'] . "," . $rows[$i]['CENA_SPRZEDAZY'] . ",'" . $rows[$i]['MARKA'] . "','" . $rows[$i]['DOST'] . "'),";
+        } else {
+            $dateToTable = $dateToTable . "(" . $rows[$i]['EAN'] . ",'" . $rows[$i]['NAZWA'] . "'," . $rows[$i]['STAN'] . "," . $rows[$i]['CENA_ZAKUPU'] . "," . $rows[$i]['CENA_SPRZEDAZY'] . ",'" . $rows[$i]['MARKA'] . "','" . $rows[$i]['DOST'] . "')";
+        }
+    }    
     //add table to db
 
     $sql3 = "INSERT INTO STANY VALUES $dateToTable";
     $result3 = mysqli_query($conn, $sql3);
+    $sql3 ="";
+}
 
     // EAN
     // NAZWA
@@ -80,15 +117,15 @@ if ($xlsx = SimpleXLSX::parse("excel/" . $nameFileExcel)) {
     // DOST
 
 }
-// 
+
 // include 'php/header.php';
 // include 'php/navbar.php';
 
 ?>
 <style>
-.navbar {
-    background-color: #198754 !important;
-}
+    .navbar {
+        background-color: #198754 !important;
+    }
 </style>
 
 
