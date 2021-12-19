@@ -22,7 +22,7 @@ ini_set('display_errors', true);
 require_once __DIR__ . '/api/simplexlsx/src/SimpleXLSX.php';
 $dateToTable = "";
 if ($xlsx = SimpleXLSX::parse("excel/" . $nameFileExcel)) {
-// if ($xlsx = SimpleXLSX::parse("excel/STANYmale.xlsx")) {
+// if ($xlsx = SimpleXLSX::parse("excel/STANY.xlsx")) {
     // Produce array keys from the array values of 1st array element
     $header_values = $rows = [];
     foreach ($xlsx->rows() as $k => $r) {
@@ -62,7 +62,7 @@ $wykonanePetle =0;
 
 $IloscLiniiWPliku = count($xlsx->rows());
 $iloscPetliPo1000 = floor($IloscLiniiWPliku/1000);
-echo $iloscPetliPo1000;
+
     //create question to sql
 for ($i =0; $i<$IloscLiniiWPliku-1; $i++) {
      if ($IloscLiniiWPliku<1000){
