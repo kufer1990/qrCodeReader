@@ -1,12 +1,24 @@
 <?php 
-$servername="localhost";
-$username="root";
-$password="";
-$db="merckolnqe";
+// $servername="localhost";
+// $username="root";
+// $password="";
+// $db="merckolnqe";
 
-$conn= new mysqli($servername, $username, $password, $db);
+// $conn= new mysqli($servername, $username, $password, $db);
+
+// if($conn->connect_error){
+//     die('connectionfailed: '.$conn->connect_error);
+// }
+
+
+
+ 
+
+
+$conn= new mysqli($servername,$username, $password,$db);
 
 if($conn->connect_error){
     die('connectionfailed: '.$conn->connect_error);
 }
+
 ?>
