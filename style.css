@@ -106,11 +106,25 @@ body {
 }
 
 body {
-    /* background: rgb(59, 200, 59); */
+    /* background-color: rgb(59, 200, 59) !important; */
 }
 
 @media (max-width: 1000px) {
     .dataUpdateButton {
         display: none;
     }
+}
+
+.alertElementFreeFile {
+    display: none;
+}
+
+.viewSendButton {
+    /* pointer-events: none; */
+}
+
+.viewSendButton:hover {
+    /* display: block; */
+
+    cursor: pointer;
 }
