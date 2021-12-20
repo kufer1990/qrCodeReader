@@ -22,7 +22,7 @@ ini_set('display_errors', true);
 require_once __DIR__ . '/api/simplexlsx/src/SimpleXLSX.php';
 $dateToTable = "";
 if ($xlsx = SimpleXLSX::parse("excel/" . $nameFileExcel)) {
-// if ($xlsx = SimpleXLSX::parse("excel/STANY.xlsx")) {
+    // if ($xlsx = SimpleXLSX::parse("excel/STANY.xlsx")) {
     // Produce array keys from the array values of 1st array element
     $header_values = $rows = [];
     foreach ($xlsx->rows() as $k => $r) {
@@ -35,88 +35,80 @@ if ($xlsx = SimpleXLSX::parse("excel/" . $nameFileExcel)) {
     // print_r($rows[0]);
 }
 
-    include "php/connect.php";
+include "php/connect.php";
 
-    $sqlDrop= "DROP TABLE `stany`";
-    $resultDrop = mysqli_query($conn, $sqlDrop);
-    //create table
-    $sql = "CREATE TABLE IF NOT EXISTS STANY (
+$sqlDrop = "DROP TABLE `stany`";
+$resultDrop = mysqli_query($conn, $sqlDrop);
+//create table
+$sql = "CREATE TABLE IF NOT EXISTS STANY (
     `ID` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `EAN` BIGINT,
     `NAZWA` VARCHAR(30) CHARACTER SET utf8,
     `STAN` INT,
-    `CENA_ZAKUPU` NUMERIC(5, 2),
+    -- `CENA_ZAKUPU` NUMERIC(5, 2),
     `CENA_SPRZEDAZY` NUMERIC(5, 2),
-    `MARKA` VARCHAR(10) CHARACTER SET utf8,
+    -- `MARKA` VARCHAR(10) CHARACTER SET utf8,
     `DOST` VARCHAR(29) CHARACTER SET utf8
 );";
-    $result = mysqli_query($conn, $sql);
+$result = mysqli_query($conn, $sql);
 
-    //clear table
-    $sql2 = "DELETE FROM `STANY`";
-    $result2 = mysqli_query($conn, $sql2);
+//clear table
+$sql2 = "DELETE FROM `STANY`";
+$result2 = mysqli_query($conn, $sql2);
+// mysqli_close($conn);
 
-    
-$j=0;
-$wykonanePetle =0;
+$j = 0;
+$wykonanePetle = 0;
 
 $IloscLiniiWPliku = count($xlsx->rows());
-$iloscPetliPo1000 = floor($IloscLiniiWPliku/1000);
+$iloscPetliPo1000 = floor($IloscLiniiWPliku / 1000);
 
-    //create question to sql
-for ($i =0; $i<$IloscLiniiWPliku-1; $i++) {
-     if ($IloscLiniiWPliku<1000){
-        if ($i < $IloscLiniiWPliku-2) {
-            $dateToTable = $dateToTable . "(''," . $rows[$i]['EAN'] . ",'" . $rows[$i]['NAZWA'] . "'," . $rows[$i]['STAN'] . "," . $rows[$i]['CENA_ZAKUPU'] . "," . $rows[$i]['CENA_SPRZEDAZY'] . ",'" . $rows[$i]['MARKA'] . "','" . $rows[$i]['DOST'] . "'),";
+//create question to sql
+for ($i = 0; $i < $IloscLiniiWPliku - 1; $i++) {
+    if ($IloscLiniiWPliku < 1000) {
+        if ($i < $IloscLiniiWPliku - 2) {
+            $dateToTable = $dateToTable . "(''," . $rows[$i]['EAN'] . ",'" . $rows[$i]['NAZWA'] . "'," . $rows[$i]['STAN'] . "," . $rows[$i]['CENA_SPRZEDAZY'] . ",'" . $rows[$i]['MARKA'] . "'),";
         } else {
-            $dateToTable = $dateToTable . "(''," . $rows[$i]['EAN'] . ",'" . $rows[$i]['NAZWA'] . "'," . $rows[$i]['STAN'] . "," . $rows[$i]['CENA_ZAKUPU'] . "," . $rows[$i]['CENA_SPRZEDAZY'] . ",'" . $rows[$i]['MARKA'] . "','" . $rows[$i]['DOST'] . "')";
+            $dateToTable = $dateToTable . "(''," . $rows[$i]['EAN'] . ",'" . $rows[$i]['NAZWA'] . "'," . $rows[$i]['STAN'] . "," . $rows[$i]['CENA_SPRZEDAZY'] . ",'" . $rows[$i]['MARKA'] . "')";
         }
         $sql3 = "INSERT INTO STANY VALUES $dateToTable";
         $result3 = mysqli_query($conn, $sql3);
-     
-    }
-    else {  // jeżeli plik jest większy niż 1000 linii
-     
-     if($j<1000 && $wykonanePetle < $iloscPetliPo1000 ){
-        if ($i < $IloscLiniiWPliku-2 ) {
-            $dateToTable = $dateToTable . "(''," . $rows[$i]['EAN'] . ",'" . $rows[$i]['NAZWA'] . "'," . $rows[$i]['STAN'] . "," . $rows[$i]['CENA_ZAKUPU'] . "," . $rows[$i]['CENA_SPRZEDAZY'] . ",'" . $rows[$i]['MARKA'] . "','" . $rows[$i]['DOST'] . "'),";
-        } else {
-            $dateToTable = $dateToTable . "(''," . $rows[$i]['EAN'] . ",'" . $rows[$i]['NAZWA'] . "'," . $rows[$i]['STAN'] . "," . $rows[$i]['CENA_ZAKUPU'] . "," . $rows[$i]['CENA_SPRZEDAZY'] . ",'" . $rows[$i]['MARKA'] . "','" . $rows[$i]['DOST'] . "')";
-        }
-    }
-   
-    else if($j<1000 && $wykonanePetle == $iloscPetliPo1000){
-        if ($i < $IloscLiniiWPliku-2 ) {
-            $dateToTable = $dateToTable . "(''," . $rows[$i]['EAN'] . ",'" . $rows[$i]['NAZWA'] . "'," . $rows[$i]['STAN'] . "," . $rows[$i]['CENA_ZAKUPU'] . "," . $rows[$i]['CENA_SPRZEDAZY'] . ",'" . $rows[$i]['MARKA'] . "','" . $rows[$i]['DOST'] . "'),";
-        } else {
-            $dateToTable = $dateToTable . "(''," . $rows[$i]['EAN'] . ",'" . $rows[$i]['NAZWA'] . "'," . $rows[$i]['STAN'] . "," . $rows[$i]['CENA_ZAKUPU'] . "," . $rows[$i]['CENA_SPRZEDAZY'] . ",'" . $rows[$i]['MARKA'] . "','" . $rows[$i]['DOST'] . "')";
-        }
-        if($i==$IloscLiniiWPliku-2){          
+    } else {  // jeżeli plik jest większy niż 1000 linii
+        if ($j < 1000 && $wykonanePetle < $iloscPetliPo1000) {
+            if ($i < $IloscLiniiWPliku - 2) {
+                // "('',$rows[$i]['EAN'],'$rows[$i]['NAZWA']',$rows[$i]['STAN'],$rows[$i]['CENA_SPRZEDAZY'],'$rows[$i]['MARKA']'),";
+                $dateToTable = $dateToTable . "(''," . $rows[$i]['EAN'] . ",'" . $rows[$i]['NAZWA'] . "'," . $rows[$i]['STAN'] . "," . $rows[$i]['CENA_SPRZEDAZY'] . ",'" . $rows[$i]['MARKA'] . "'),";
+            } else {
+                $dateToTable = $dateToTable . "(''," . $rows[$i]['EAN'] . ",'" . $rows[$i]['NAZWA'] . "'," . $rows[$i]['STAN'] . "," . $rows[$i]['CENA_SPRZEDAZY'] . ",'" . $rows[$i]['MARKA'] . "')";
+            }
+        } else if ($j < 1000 && $wykonanePetle == $iloscPetliPo1000) {
+            if ($i < $IloscLiniiWPliku - 2) {
+                $dateToTable = $dateToTable . "(''," . $rows[$i]['EAN'] . ",'" . $rows[$i]['NAZWA'] . "'," . $rows[$i]['STAN'] . "," . $rows[$i]['CENA_SPRZEDAZY'] . ",'" . $rows[$i]['MARKA'] . "'),";
+            } else {
+                $dateToTable = $dateToTable . "(''," . $rows[$i]['EAN'] . ",'" . $rows[$i]['NAZWA'] . "'," . $rows[$i]['STAN'] . "," . $rows[$i]['CENA_SPRZEDAZY'] . ",'" . $rows[$i]['MARKA'] . "')";
+            }
+            if ($i == $IloscLiniiWPliku - 2) {
+                $sql3 = "INSERT INTO STANY VALUES $dateToTable";
+                $result3 = mysqli_query($conn, $sql3);
+            }
+        } else if ($j == 1000) {
+            $dateToTable = $dateToTable . "(''," . $rows[$i]['EAN'] . ",'" . $rows[$i]['NAZWA'] . "'," . $rows[$i]['STAN'] . "," . $rows[$i]['CENA_SPRZEDAZY'] . ",'" . $rows[$i]['MARKA'] . "')";
+            $j = 0;
             $sql3 = "INSERT INTO STANY VALUES $dateToTable";
             $result3 = mysqli_query($conn, $sql3);
-      
+            $dateToTable = "";
+            $wykonanePetle++;
         }
+        $j++;
     }
-    else if($j==1000){
-        $dateToTable = $dateToTable . "(''," . $rows[$i]['EAN'] . ",'" . $rows[$i]['NAZWA'] . "'," . $rows[$i]['STAN'] . "," . $rows[$i]['CENA_ZAKUPU'] . "," . $rows[$i]['CENA_SPRZEDAZY'] . ",'" . $rows[$i]['MARKA'] . "','" . $rows[$i]['DOST'] . "')";
-        $j=0;
-        $sql3 = "INSERT INTO STANY VALUES $dateToTable";
-        $result3 = mysqli_query($conn, $sql3);
-        $dateToTable="";
-        $wykonanePetle++;
-           }
-$j++;
 }
-    }
-         $sql3 ="";
-    // ID
-    // EAN
-    // NAZWA
-    // STAN
-    // CENA_ZAKUPU
-    // CENA_SPRZEAZY
-    // MARKA
-    // DOST
+$sql3 = "";
+// ID
+// EAN
+// NAZWA
+// STAN
+// CENA_SPRZEAZY
+// MARKA
 
 
 
@@ -125,9 +117,9 @@ include 'php/navbar.php';
 
 ?>
 <style>
-    .navbar {
-        background-color: #198754 !important;
-    }
+.navbar {
+    background-color: #198754 !important;
+}
 </style>
 
 
@@ -144,4 +136,5 @@ include 'php/navbar.php';
     </div>
 </div>
 </body>
+
 </html>
