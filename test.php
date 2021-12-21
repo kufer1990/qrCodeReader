@@ -1,31 +1,23 @@
 <?php
-include 'php/connect.php';
-// // echo "tekst";
-// $sql = "SELECT * FROM `stany` WHERE `EAN` = 5907520527077";
-// $result =  mysqli_query($conn, $sql);
-// echo $result;
+include 'php/header.php';
+?>
+<style>
 
+    body{
+   
+        background-image: url('img/most-tlo.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        
+    }
+</style>
 
-$query = "SELECT * FROM `stany` WHERE `EAN` = '5902163077675'";
-$sql = mysqli_query($conn, $query);
+<div class="container">
+<div class="row h-100 indexButton">
+    <div class="col-12 text-center buttonStartScanParent">
+        <a href="#"> <button type="button" id="startScan" class="btn btn-primary m-5">Rozpocznij
+                skanowanie</button></a>
+          </div>
 
-
-while ($wynik = mysqli_fetch_array($sql)) {
-    // print_r($wynik);
-    echo "</br></br>$wynik[0]";
-}
-mysqli_close($conn);
-
-include 'php/connect.php';
-$query2 = "SELECT * FROM `stany` WHERE `EAN` = '5902163077675'";
-$sql2 = mysqli_query($conn, $query2);
-
-while ($wynik2 = mysqli_fetch_array($sql2)) {
-    // print_r($wynik);
-    echo "</br></br>$wynik2[2]";
-}
-
-
-// mysql_close($con);
-
-//5902163077675
+    </div>
