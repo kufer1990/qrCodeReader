@@ -1,0 +1,130 @@
+body {
+    width: 100%;
+    height: 100vh;
+}
+
+.navbar-icon {
+    font-size: 4rem;
+    color: white;
+
+}
+
+
+#barcodesinput,
+#barcodes {
+    display: none;
+    /* visibility: hidden; */
+}
+
+.qrReaderSection {
+    display: block;
+    /* height: 60vh; */
+    overflow: hidden;
+
+}
+
+.qrReaderSectionRow {
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.inputPluParent {
+    display: flex;
+    justify-content: center;
+
+}
+
+.inputPluParent>input {
+    margin-top: 30px;
+    font-size: 20px;
+    text-align: center;
+    width: 100%;
+    height: 2rem;
+
+}
+
+#barcodesinputWithContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+}
+
+
+.parentOfCanvasRow {
+    overflow: hidden;
+    width: 100vw;
+
+}
+
+/* .borderParentOfCanvas {
+    border: 1px solid rgb(20, 233, 27) !important;
+} */
+.wrapCanvas {
+    display: flex;
+    justify-content: center;
+}
+
+#canvas {
+    height: 640px/2;
+    width: 480px/2;
+    /* width: 60vw;
+    height: 40vh; */
+}
+
+.row {
+    --bs-gutter-x: 0rem;
+}
+
+.buttonStartScanParent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* vertical-align: middle; */
+}
+
+#startScan {
+    height: 15vh;
+    font-size: 1.5rem;
+}
+
+
+
+.listDetectedCameraParent {
+    /* margin: 60px 0; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#listDetectedCamera {
+    width: 40%;
+
+}
+
+body {
+    /* background-color: rgb(59, 200, 59) !important; */
+}
+
+@media (max-width: 1000px) {
+    .dataUpdateButton {
+        display: none;
+    }
+}
+
+.alertElementFreeFile {
+    display: none;
+}
+
+.viewSendButton {
+    /* pointer-events: none; */
+}
+
+.viewSendButton:hover {
+    /* display: block; */
+
+    cursor: pointer;
+}
