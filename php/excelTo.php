@@ -22,7 +22,6 @@ ini_set('display_errors', true);
 require_once __DIR__ . '/../api/simplexlsx/src/SimpleXLSX.php';
 $dateToTable = "";
 if ($xlsx = SimpleXLSX::parse("../excel/" . $nameFileExcel)) {
-    // if ($xlsx = SimpleXLSX::parse("excel/STANY.xlsx")) {
     // Produce array keys from the array values of 1st array element
     $header_values = $rows = [];
     foreach ($xlsx->rows() as $k => $r) {
@@ -32,7 +31,6 @@ if ($xlsx = SimpleXLSX::parse("../excel/" . $nameFileExcel)) {
         }
         $rows[] = array_combine($header_values, $r);
     }
-    // print_r($rows[0]);
 }
 
 include "connect.php";
@@ -45,9 +43,7 @@ $sql = "CREATE TABLE IF NOT EXISTS STANY (
     `EAN` BIGINT,
     `NAZWA` VARCHAR(30) CHARACTER SET utf8,
     `STAN` INT,
-    -- `CENA_ZAKUPU` NUMERIC(5, 2),
     `CENA_SPRZEDAZY` NUMERIC(7, 2),
-    -- `MARKA` VARCHAR(10) CHARACTER SET utf8,
     `DOST` VARCHAR(29) CHARACTER SET utf8
 );";
 $result = mysqli_query($conn, $sql);

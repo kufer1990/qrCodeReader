@@ -27,8 +27,6 @@ include 'navbar.php';
     </div>
     </div>
 </section>
-
 </body>
 <script src="../js/scanner.js"></script>
-
 </html>
