@@ -7,7 +7,7 @@ include 'header.php';
 <div class="container h-100 d-flex justify-content-center align-items-center">
 
 
-    <form action="">
+    <form action="create_account_send_form.php" method="POST">
         <div class="wrap border border-info bg-light p-5 ">
             <div class="row">
             <div class="alert alert-danger text-center alertDangerCreateAccount" role="alert">
@@ -15,11 +15,11 @@ include 'header.php';
             </div>
             <div class="form-group">
                 <label for="createLogin">Login:</label>
-                <input type="text" class="form-control  mb-2" id="createLogin" aria-describedby="emailHelp">
+                <input type="text" name="login" class="form-control  mb-2" id="createLogin" aria-describedby="emailHelp">
             </div>
             <div class="form-group">
                 <label for="createPassword" class="mt-1">Hasło: </label>
-                <input type="password" id="createPassword" class="form-control mb-2">
+                <input type="password" name="password" id="createPassword" class="form-control mb-2">
             </div>
             <div class="form-group">
                 <label for="createPasswordRepeat" class="mt-1">Powtórz Hasło:</label>
@@ -27,11 +27,12 @@ include 'header.php';
             </div>
             <div class="form-group">
                 <label for="shopNumber" class="mt-1">Numer Sklepu:</label>
-                <input type="number" id="shopNumber" class="form-control mb-2" >
+                <input type="number" name="companyNumber" id="shopNumber" class="form-control mb-2" >
             </div>
             <div class="row justify-content-center">
                 <div class="btn btn-primary w-100 borde mt-3" id="btnSubmit">Załóż konto</div>
                 <button type="submit" class="btn btn-primary mt-5 d-none" id="submit" >Zaloguj</button>
+                <div class="btn btn-primary w-100 borde mt-3" id="returnToLog">Wróć do logowania</div>
             </div>
         </div>
     </form>
