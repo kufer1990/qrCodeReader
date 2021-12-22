@@ -21,3 +21,10 @@ include 'php/header.php';
           </div>
 
     </div>
+
+
+    <?PHP
+
+$test = rand(1000,9999);
+echo $test;
+    ?>
