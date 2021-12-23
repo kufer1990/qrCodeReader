@@ -160,6 +160,23 @@ input[type=number] {
 
 }
 
+.requestPanelLog{
+    /* position: fixed;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%); */
+    /* width:50%;
+    height: 10%; */
+    
+}
+
+
+
+
+.alertWithLogPanel{
+    display: none;
+}
+
 /* create account */
 .alertDangerCreateAccount {
     display: none;

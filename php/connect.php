@@ -1,13 +1,13 @@
  <?php
-    // $servername = "localhost";
-    // $username = "root";
-    // $password = "";
-    // $db = "merckolnqe";
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $db = "merckolnqe";
 
-    $servername = "serwer2104676.home.pl";
-    $username = "34509116_merkol";
-    $password = "Ut3pa8c2@";
-    $db = "34509116_merkol";
+    // $servername = "serwer2104676.home.pl";
+    // $username = "34509116_merkol";
+    // $password = "Ut3pa8c2@";
+    // $db = "34509116_merkol";
 
 
 
