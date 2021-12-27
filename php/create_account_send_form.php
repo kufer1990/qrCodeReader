@@ -1,8 +1,9 @@
 <?php 
 include 'connect.php';
-$LOGIN = $_POST['login'];
-$PASSWORD = password_hash($_POST['password'], PASSWORD_DEFAULT);
-$COMPANY_NUMBER = $_POST['companyNumber'];
+$question = json_decode($_POST['question']);
+$LOGIN = $question->val->login;
+$PASSWORD = $question->val->password;
+$COMPANY_NUMBER = $question->val->companyNumber;
 $RANDOM_NUMBER = rand(1000,9999);
 $VERIFY = 'NO';
 
@@ -25,11 +26,11 @@ while($row = mysqli_fetch_array($serchMemberWitchDb)){
     $loginDb = $row['LOGIN'];
 }
 if(@$loginDb>""){
-    echo 'login w użyciu';
+    echo 'Ten login jest już zajęty, spróbuj ponownie z innym loginem.';
 }else{
     $sql2="INSERT INTO `MEMBERS` VALUES ('','$LOGIN','$PASSWORD',$COMPANY_NUMBER,$RANDOM_NUMBER,'$VERIFY',NOW())";
     $result = mysqli_query($conn, $sql2);
-   echo 'Konto zostało założone';
+   echo 'Twoje konto zostało założone. Na email pdv został wysłany kod weryfikacyjny, który trzeba wpisać po pierwszym logowaniu w celu weryfikacji konta.';
 }
 
 

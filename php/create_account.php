@@ -7,8 +7,12 @@ include 'header.php';
 <div class="container h-100 d-flex justify-content-center align-items-center">
 
 
-    <form action="create_account_send_form.php" method="POST">
+    <form method="POST">
         <div class="wrap border border-info bg-light p-5 ">
+
+        <div class="alert responseCreateAccount" id="allertAfterResponse" role="alert">
+  
+</div>
             <div class="row">
             <div class="alert alert-danger text-center alertDangerCreateAccount" role="alert">
             </div>
