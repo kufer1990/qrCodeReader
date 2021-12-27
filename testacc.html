@@ -10,25 +10,42 @@
     <div>
         <form method="POST">
         <input type="text" name='textName' id="question">
-        <button type="submit">wyslij</button>
+        <input type="text" name='textName' id="questionPass">
 </form>
     </div>
     <div class="res"></div>
+
+
+    <button type="submit" id="findaddr">wyslij</button>
 </body>
 
 <script>
-    // const question = document.querySelector('.question');
+    const log = document.querySelector('#question');
+    const pass = document.querySelector('#questionPass');
     
-xhr=new XMLHttpRequest();
-xhr.onload = function(){
-    if(xhr.status==200){
-        document.querySelector('.res').textContent= xhr.responseText;
-        
-    }
-}
-xhr.open('POST', 'test.php', true);
-xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-xhr.send('textName=' + JSON.stringify({val: question.value }));
+    
+document.getElementById("findaddr").addEventListener("click", function(){
+ 
+ var xmlhttp = new XMLHttpRequest();
+         xmlhttp.open("POST","test.php", true);
+         var xmlDoc;
+         xmlhttp.onreadystatechange = function() {
+             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+             xmlDoc = xmlhttp.responseText;
+             document.querySelector('.res').textContent = xmlhttp.responseText;
+             
+             console.log(xmlDoc);
+             }
+         };
+         xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
+       let xml={
+           "name": `${log.value}`,
+           "pass": `${pass.value}`
+       }
+
+      xmlhttp.send('question=' + JSON.stringify({ val: xml }));
+       
+ });
 </script>
 </html>

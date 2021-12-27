@@ -1,35 +1,19 @@
-<?php
-// include 'php/header.php';
-?>
-<!-- <style>
-    body {
-
-        background-image: url('img/most-tlo.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-
-    }
-</style>
-
-<div class="container">
-    <div class="row h-100 indexButton">
-        <div class="col-12 text-center buttonStartScanParent">
-            <a href="#"> <button type="button" id="startScan" class="btn btn-primary m-5">Rozpocznij
-                    skanowanie</button></a>
-        </div>
-
-    </div> -->
-
-
-    <?PHP
-
-// $test = rand(1000,9999);
-// echo $test;
-    ?>
 
     <?php 
+    include 'php/connect.php';
     
-    $question = $_POST['textName'];
-    echo 'tekst z pola tekst to :'.$question->val;
-    ?>
+    $login = json_decode($_POST['question']);
+    // $password = $_POST['pass'][1];
+  print_r($login->val->name);
+  print_r($login->val->pass);
+    // echo $password;
+   
+//     $sql3="SELECT * FROM `MEMBERS` WHERE `login` = '$login'";
+// $serchMemberWitchDb = mysqli_query($conn, $sql3);
+// while($row = mysqli_fetch_array($serchMemberWitchDb)){
+//     global $loginDb;
+//     $loginDb = $row['PASSWORD'];
+// }
+// echo $loginDb;
+   ?>
+    
