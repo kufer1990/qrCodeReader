@@ -1,9 +1,12 @@
 <?php
 include "connect.php";
 
-$login = $_POST['loginPanel'];
-$password = $_POST['passwordPanel'];
 
+$send = json_decode($_POST['send']);
+
+$login =$send->val->login;
+$password = $send->val->password;
+// echo $login."    ".$password;
 $sql = "SELECT * FROM `MEMBERS` WHERE `login` = $login";
 $result = mysqli_query($conn, $sql);
 
@@ -16,15 +19,17 @@ $dbPassword = $row['PASSWORD'];
 
 
 if(!@$dbLogin){
-    echo 'Użytkownik nie istnieje w bazie</br>';
-}
+    echo 'Błędny login. Brak użytkownika w bazie danych.';
+}else{
 
 if(password_verify($password,@$dbPassword)){
-    header('location: mainPage.php');
-}else{
-    echo 'niepoprawne hasło';
+    session_start();
+    $_SESSION['users'] = htmlspecialchars($login);
+    echo "Zostałeś zalogowany";
+   }else{
+    echo 'Niepoprawne hasło.';
 };
-
+}
 
 
 ?>

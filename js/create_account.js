@@ -38,14 +38,19 @@ xhr.onload = function(){
 if (document.querySelector('.responseCreateAccount').textContent==" Ten login jest już zajęty, spróbuj ponownie z innym loginem."){
     document.querySelector('.responseCreateAccount').classList.add('alert-danger');
 }else if (document.querySelector('.responseCreateAccount').textContent==" Twoje konto zostało założone. Na email pdv został wysłany kod weryfikacyjny, który trzeba wpisać po pierwszym logowaniu w celu weryfikacji konta."){
+    document.querySelector('.responseCreateAccount').classList.remove('alert-danger');
     document.querySelector('.responseCreateAccount').classList.add('alert-success'); 
+    login.value="";
+    password.value="";
+    passwordRepeat.value="";
+    shopNumber.value="";
 }
     }
 }
 let xhrForm={
 "login": `${login.value}`,
-"password": `${password}`,
-"companyNumber": `${shopNumber}`
+"password": `${password.value}`,
+"companyNumber": `${shopNumber.value}`
 }
 xhr.open('POST', 'create_account_send_form.php', true);
 xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');

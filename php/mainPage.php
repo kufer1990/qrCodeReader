@@ -1,7 +1,9 @@
 <?php
 include 'header.php';
 include 'navbar.php';
+
 ?>
+<!-- <div class="background-login"></div> -->
 
 <!-- buttons -->
 <div class="row h-100 indexButton">
