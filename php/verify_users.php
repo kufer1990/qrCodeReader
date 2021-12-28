@@ -13,8 +13,10 @@ $result = mysqli_query($conn, $sql);
 while(@$row = mysqli_fetch_array($result)){
 global $dbPassword;
 global $dbLogin;
+global $dbVerification;
 $dbLogin = $row['LOGIN'];
 $dbPassword = $row['PASSWORD'];
+$dbVerification = $row['VERIFICATION'];
 };
 
 
@@ -24,6 +26,7 @@ if(!@$dbLogin){
 
 if(password_verify($password,@$dbPassword)){
     session_start();
+    $_SESSION['verification']= htmlspecialchars($dbVerification);
     $_SESSION['users'] = htmlspecialchars($login);
     echo "Zostałeś zalogowany";
    }else{
