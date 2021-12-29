@@ -5,9 +5,9 @@
     $db = "merckolnqe";
 
     // $servername = "serwer2104676.home.pl";
-    // $username = "34509116_merkol";
-    // $password = "Ut3pa8c2@";
-    // $db = "34509116_merkol";
+    // $username = "34509116";
+    // $password = "";
+    // $db = "34509116";
 
 
 
