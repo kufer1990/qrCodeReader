@@ -21,6 +21,7 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
 }
+
 /* navbar */
 .navbar-icon {
     font-size: 4rem;
@@ -85,12 +86,6 @@ input[type=number] {
 
 .row {
     --bs-gutter-x: 0rem;
-}
-
-.buttonStartScanParent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 #startScan {
@@ -161,7 +156,7 @@ input[type=number] {
 }
 
 .requestPanelLog {
-display: none;
+    display: none;
 }
 
 

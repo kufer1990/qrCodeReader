@@ -1,13 +1,38 @@
 <?php
 include 'header.php';
 ?>
-<div class="background-login"></div>
-<div class="row">
 
-</div>
+<style>
+
+    .imageLogo{
+        width: 90%;
+        height:90%;
+        /* margin-top: 25px; */
+        /* margin-bottom: 25px; */
+    }
+
+    @media (min-width:350px) {
+        .imageLogo{
+        width: 50%;
+        height:50%;
+        /* margin-bottom: 25px; */
+    }
+    }
+
+</style>
+<div class="background-login"></div>
+
 <div class="container h-100 d-flex justify-content-center align-items-center">
-    <form method="POST">
-        <div class="wrap border border-info bg-light p-5 ">
+   
+ <div class="row justify-content-center">
+     <div class="col">
+
+     <div class="col-12 text-center mb-3 mt-3">
+            <img class="imageLogo" src="../img/MLogo.png" alt="">
+            </div>
+     <form method="POST">
+        <div class="wrap border border-info bg-light p-5">
+           
             <div class="requestPanelLog responsPanel alert alert-danger text-center">
             </div>
             <div class="alert alert-danger text-center alertWithLogPanel" role="alert"></div>
@@ -31,6 +56,15 @@ include 'header.php';
     <form action="create_account.php">
         <button type="submit" class="btn btn-primary mt-1 d-none" id="registerAccount">Załóż konto</button>
     </form>
+
+
+
+     </div>
+ </div>
+
+
+
+    
 </div>
 
 </body>

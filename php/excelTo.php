@@ -107,7 +107,17 @@ $sql3 = "";
 // STAN
 // CENA_SPRZEAZY
 // MARKA
+function countOfDatabase(){
+    include 'connect.php';
+    $sql= "SELECT count(*) FROM `STANY`";
+    $result = mysqli_query($conn, $sql);
+    while($row =mysqli_fetch_array($result)){
+        global $countOfTableStany;
+   $countOfTableStany = $row[0];
 
+}
+}
+countOfDatabase();
 
 
 include 'header.php';
@@ -115,9 +125,13 @@ include 'navbar.php';
 
 ?>
 <style>
-.navbar {
-    background-color: #198754 !important;
-}
+    .navbar {
+        background-color: #198754 !important;
+    }
+
+    #sessionLogOut>a{
+        background-color: #198754 !important;
+    }
 </style>
 
 
@@ -125,6 +139,10 @@ include 'navbar.php';
     <div class="row h-100 d-flex align-items-center">
         <div class="col-12  d-flex align-items-center justify-content-center">
             <div class="text justify-content-center text-white bg-success p-4">Gratulacje! Baza została zaktualizowana!
+            </div>
+        </div>
+        <div class="col-12  d-flex align-items-center justify-content-center">
+            <div class="text justify-content-center text-success border border-success p-4"><?php echo "Zaimportowanych zostało <strong>$countOfTableStany</strong> kodów. Wartość powinna zgadzać się z ilością referencji znajdujących się w excelu.";?>
             </div>
         </div>
         <div class="col-12  d-flex align-items-center justify-content-center">
