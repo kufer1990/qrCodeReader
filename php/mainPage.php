@@ -1,16 +1,7 @@
 <?php
 include 'header.php';
 include 'navbar.php';
-// echo $_SESSION['verification'];
-// echo $_SESSION['verification'];
 ?>
-<!-- <div class="background-login"></div> -->
-
-<!-- buttons -->
-<!-- <div class="row bg-primary w-100 h-100 border justify-content-text align-items-center"> -->
-
-<!-- </div> -->
-
 <?php if($_SESSION['verification']=="NO") : ?>
 <div class="container justify-content-center align-items-center w-100 h-100">
         <div class="row position-absolute top-50 start-50 translate-middle">
@@ -18,10 +9,10 @@ include 'navbar.php';
                 <form method="POST">
                         <div class="col-12 text-center w-100 d-flex align-items-center">Twoje konto jest
                                 niezweryfikowane na email pdv został wysłany kod aktywacyjny.</div>
-                        <div class="col-12 mt-3"><input class="w-100" type="number" placeholder="Wpisz kod aktywacyjny"></div>
-                        <div class="col-12 mt-3"><button class="btn btn-primary w-100" id="confirmActivation">Zatwierdź</button></div>
+                        <div class="col-12 mt-3"><input class="w-100 inputActivateAccount" type="number" placeholder="Wpisz kod aktywacyjny"></div>
                         
                 </form>
+                <div class="col-12 mt-3"><button class="btn btn-primary w-100" id="confirmActivation">Zatwierdź</button></div>
                 <div class="col-12 mt-3"><button class="btn btn-primary w-100" id="resendEmail">Wyślij kod ponownie</button></div>
         </div>
       
