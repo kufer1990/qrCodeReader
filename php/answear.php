@@ -1,6 +1,8 @@
 <?php
 include 'header.php';
 include 'connect.php';
+include 'counter.php';
+counter();
 
 $bardcodeElement = $_POST['bardcodeInputContent'];
 
@@ -36,6 +38,7 @@ eanVerification($bardcodeElement, $conn);
 
 <?php if($eanVerification): ?>
 <div class="container">
+
     <div class="row text-center mt-5">
         <div class="col-12 mt-3 answearDiv border border-dark bg-light">Plu: <?php echo $bardcodeElement ?></div>
         <div class="col-12 mt-3 answearDiv border border-dark bg-dark text-white">Nazwa: <?php if(@$answearNazwa){echo $answearNazwa;}else{echo "Brak danych w bazie";} ?></div>

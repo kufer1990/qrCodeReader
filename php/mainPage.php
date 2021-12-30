@@ -1,7 +1,10 @@
 <?php
 include 'header.php';
 include 'navbar.php';
+
+// licznik();
 ?>
+
 <?php if($_SESSION['verification']=="NO") : ?>
 <div class="container justify-content-center align-items-center w-100 h-100">
         <div class="row position-absolute top-50 start-50 translate-middle">

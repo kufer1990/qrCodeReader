@@ -1,6 +1,8 @@
 <?php
 include 'header.php';
 include 'navbar.php';
+include 'counter.php';
+counter();
 ?>
 
 <!-- code scanner qr -->
