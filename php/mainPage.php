@@ -29,8 +29,13 @@ include 'navbar.php';
         <div class="row">
                 <div class="col-md-12 col-lg-6 text-center">
                         <a href="scanner.php">
-                                <button type="button" id="startScan" class="btn btn-primary m-5">Rozpocznij
-                                        skanowanie</button>
+                                <button type="button" id="startScan" class="btn btn-primary m-1 mb-2">Rozpocznij
+                                        skanowanie </br> w Google Chrome</button>
+                        </a>
+                </div>
+                <div class="col-md-12 col-lg-6 text-center">
+                        <a href="scanner_safari.php">
+                                <button type="button" id="startScan" class="btn btn-primary m-1 mt-2">Rozpocznij skanowanie </br> w Safari</button>
                         </a>
                 </div>
                 <div class="col-md-12 col-lg-6 text-center">
