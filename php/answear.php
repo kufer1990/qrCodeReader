@@ -49,9 +49,13 @@ eanVerification($bardcodeElement, $conn);
     </div>
     <!-- button -->
     <div class="row mt-5">
-        <div class="col-12 text-center buttonStartScanParent">
+        <div class="col-12 text-center buttonStartScanParent mb-3">
             <a href="scanner.php"> <button type="button" id="startScan" class="btn btn-primary">Rozpocznij
-                    skanowanie</button></a>
+                    skanowanie (Chrome)</button></a>
+        </div>
+        <div class="col-12 text-center buttonStartScanParent mt-2">
+            <a href="scanner_safari.php"> <button type="button" id="startScan" class="btn btn-primary">Rozpocznij
+                    skanowanie (Safari)</button></a>
         </div>
     </div>
 </div>
